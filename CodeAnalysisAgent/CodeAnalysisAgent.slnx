@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="CodeAnalysisAgent.Model/CodeAnalysisAgent.Model.csproj" />
+  <Project Path="CodeAnalysisAgent.Services/CodeAnalysisAgent.Services.csproj" />
+  <Project Path="CodeAnalysisAgent.UI/CodeAnalysisAgent.UI.csproj" />
+  <Project Path="CodeAnalysisAgent.ViewModel/CodeAnalysisAgent.ViewModel.csproj" />
+</Solution>

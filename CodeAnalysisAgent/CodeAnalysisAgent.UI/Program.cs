@@ -1,7 +1,14 @@
-﻿Console.WriteLine("Code Analysis Agent");
+﻿using CodeAnalysisAgent.ViewModel;
+using CodeAnalysisAgent.Services;
+
+using System.Net.Http;
+
+Console.WriteLine("Code Analysis Agent");
 Console.WriteLine("-------------------");
 
-var ollama = new OllamaClient();
+IOllamaClient  ollamaClient = new OllamaClient(new HttpClient());
+
+var viewModel = new MainViewModel(ollamaClient);
 
 while (true)
 {
@@ -17,7 +24,7 @@ while (true)
 
     try
     {
-        string answer = await ollama.GenerateAsync(input);
+        string answer = await viewModel.SendMessageAsync(input);
 
         Console.WriteLine();
         Console.WriteLine("AI: " + answer);

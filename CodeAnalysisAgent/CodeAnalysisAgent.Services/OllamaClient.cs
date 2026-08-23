@@ -1,18 +1,18 @@
+namespace CodeAnalysisAgent.Services;
+
 using System.Net.Http.Json;
 
-public class OllamaClient
+public class OllamaClient : IOllamaClient
 {
     private readonly HttpClient _httpClient;
 
-    public OllamaClient()
+    public OllamaClient(HttpClient httpClient)
     {
-        _httpClient = new HttpClient
-        {
-            BaseAddress = new Uri("http://localhost:11434")
-        };
+        _httpClient = httpClient;   
+        _httpClient.BaseAddress = new Uri("http://localhost:11434");
     }
 
-    public async Task<string> GenerateAsync(string prompt)
+    public async Task<string> GetResponseAsync(string prompt)
     {
         var request = new
         {
