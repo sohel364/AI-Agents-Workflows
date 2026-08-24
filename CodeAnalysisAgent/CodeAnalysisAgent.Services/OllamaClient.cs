@@ -1,3 +1,4 @@
+using CodeAnalysisAgent.Model;
 namespace CodeAnalysisAgent.Services;
 
 using System.Net.Http.Json;
@@ -12,8 +13,10 @@ public class OllamaClient : IOllamaClient
         _httpClient.BaseAddress = new Uri("http://localhost:11434");
     }
 
-    public async Task<string> GetResponseAsync(string prompt)
+    public async Task<string> GetResponseAsync(IReadOnlyList<ChatMessage> messages)
     {
+        string prompt = string.Join("\n", messages.Select(m => $"{m.Role}: {m.Content}"));
+
         var request = new
         {
             model = "llava:7b",

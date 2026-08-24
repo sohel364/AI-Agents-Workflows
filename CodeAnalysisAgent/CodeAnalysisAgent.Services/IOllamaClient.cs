@@ -1,6 +1,7 @@
-﻿namespace CodeAnalysisAgent.Services;
+﻿using CodeAnalysisAgent.Model;
+namespace CodeAnalysisAgent.Services;
 
 public interface IOllamaClient
 {
-    Task<string> GetResponseAsync(string prompt);
+    Task<string> GetResponseAsync(IReadOnlyList<ChatMessage> messages);
 }
