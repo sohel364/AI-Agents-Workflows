@@ -5,25 +5,16 @@ namespace CodeAnalysisAgent.ViewModel;
 
 public class MainViewModel
 {    
-    private readonly IOllamaClient _ollamaClient;
+    private readonly IAgentService _agentService;
     public List<ChatMessage> Messages { get; set; } = new();
 
-    public MainViewModel(IOllamaClient ollamaClient)
+    public MainViewModel(IAgentService agentService)
     {
-        _ollamaClient = ollamaClient;
+		_agentService = agentService;
     }
 
     public async Task<string> SendMessageAsync(string message)
     {
-        // Add user message to the list
-        Messages.Add(new ChatMessage { Role = "user", Content = message });
-
-        // Get response from the AI model
-        string aiResponse = await _ollamaClient.GetResponseAsync(Messages);
-
-        // Add AI response to the list
-        Messages.Add(new ChatMessage { Role = "assistant", Content = aiResponse });
-
-        return aiResponse;
-    }    
+        return await _agentService.SendMessage(message);
+    }
 }

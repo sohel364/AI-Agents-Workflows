@@ -7,8 +7,9 @@ Console.WriteLine("Code Analysis Agent");
 Console.WriteLine("-------------------");
 
 IOllamaClient  ollamaClient = new OllamaClient(new HttpClient());
+IAgentService agentService = new AgentService(ollamaClient);
 
-var viewModel = new MainViewModel(ollamaClient);
+var viewModel = new MainViewModel(agentService);
 
 while (true)
 {
